@@ -10,11 +10,6 @@
 
 module.exports = {
   attributes: {
-    userid: {
-      type: 'number',
-      required: true,
-      unique: true,
-    },
     username: {
       type: 'string',
       minLength: 6,

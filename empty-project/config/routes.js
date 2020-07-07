@@ -24,19 +24,18 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
-  // 'GET /login': {view: 'login'},
   // 'GET /get'  : 'UserController.get',
   // 'POST /login': 'AuthController.login',
   // '/logout': 'AuthController.logout',
-  // 'GET /register': {view: 'register'},
+  'GET /login': {view: 'login'},
+  'GET /register': {view: 'register'},
   '/': {view: 'pages/homepage'},
 
-  'GET /users'                    : 'UserController.users',
-  'GET /users/:userid'            : 'UserController.findUserById',
-  'POST /create'                  : 'UserController.create',
-  'PUT /update'                   : 'UserController.updateEmail',
-  'DELETE /user/delete/:username' : 'UserController.deleteByUsername',
+  'GET /users': 'UserController.users',
+  'GET /users/:username': 'UserController.findUserByUsername',
+  'POST /create': 'UserController.create',
+  'PUT /update': 'UserController.updateEmail',
+  'DELETE /user/delete/:username': 'UserController.deleteByUsername',
   // 'POST user': {
   //   controller: 'UserController',
   //   action: 'create',

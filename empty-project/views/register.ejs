@@ -1,7 +1,18 @@
-<h1>Register</h1>
-<form method="POST" action="/user">
-  <input type="text" name="username" placeholder="Username">
-  <input type="email" name="email" placeholder="Email Address">
-  <input type="password" name="password" placeholder="Password">
-  <input type="submit" value="submit">
-</form>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Register</li>
+</ol>
+
+<h1 class="display-4 mb-4">Register</h1>
+<div class="form-group">
+  <form method="POST" action="create">
+    <label for="username">Username</label>
+    <input class="form-control mb-4" autofocus="autofocus" type="text" name="username" minlength="6" maxlength="20" pattern="[a-zA-Z0-9]+" required>
+    <label for="email">Email</label>
+    <input class="form-control mb-4" type="email" name="email">
+    <label for="password">Password</label>
+    <input class="form-control mb-4" type="password" name="password" minlength="6" maxlength="20" pattern="[a-zA-Z0-9]+" required>
+    <input class="btn btn-block btn-info" type="submit" value="Register">
+  </form>
+</div>
+

@@ -16,49 +16,29 @@ module.exports = {
       res.serverError (err.toString ());
     }
   },
-  findUserById: async function (req, res) {
-    var userid = req.param ('userid');
-    var userById = await User.find ({
-      where: {userid: userid},
+  findUserByUsername: async function (req, res) {
+    var username = req.param ('username');
+    var userByUsername = await User.find ({
+      where: {username: username},
     });
-    if (userById) {
-      res.send (userById);
+    if (userByUsername) {
+      res.send (userByUsername);
     } else {
-      res.send ('Not found user by id: ' + userid);
+      res.send ('Not found user by username: ' + username);
     }
   },
   create: async function (req, res) {
-    var userid = req.param ('userid');
     var username = req.param ('username');
     var password = req.param ('password');
     var email = req.param ('email');
-    if (userid === undefined || userid === '') {
-      return res.json ({
-        status: 'error',
-        message: 'ID is empty',
-      });
-    }
-    if (username === undefined || username === '') {
-      return res.json ({
-        status: 'error',
-        message: 'Username is empty',
-      });
-    }
-    if (password === undefined || password === '') {
-      return res.json ({
-        status: 'error',
-        message: 'Password is empty',
-      });
-    }
     var createdUser = await User.create ({
-      userid: userid,
       username: username,
       password: password,
       email: email,
     }).fetch ();
 
     if (createdUser) {
-      res.send ('Done');
+      res.redirect ('/');
     }
   },
   updateEmail: async function (req, res) {
