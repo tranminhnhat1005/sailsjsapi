@@ -27,6 +27,7 @@ module.exports.routes = {
   // 'GET /get'  : 'UserController.get',
   // 'POST /login': 'AuthController.login',
   // '/logout': 'AuthController.logout',
+  // '/login': 'UserController.use',
   'GET /login': {view: 'login'},
   'GET /register': {view: 'register'},
   '/': {view: 'pages/homepage'},
@@ -34,6 +35,7 @@ module.exports.routes = {
   'GET /users': 'UserController.users',
   'GET /users/:username': 'UserController.findUserByUsername',
   'POST /create': 'UserController.create',
+  'POST /login': 'UserController.login',
   'PUT /update': 'UserController.updateEmail',
   'DELETE /user/delete/:username': 'UserController.deleteByUsername',
   // 'POST user': {

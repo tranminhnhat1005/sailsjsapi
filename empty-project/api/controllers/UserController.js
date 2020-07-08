@@ -6,8 +6,59 @@
  */
 
 // const User = require("../models/User");
+const jwt = require ('jsonwebtoken');
 
 module.exports = {
+  // use: function (req, res, next) {
+  //   if (
+  //     req.headers &&
+  //     req.headers.authorization &&
+  //     req.headers.authorization.split (' ')[0] === 'JWT'
+  //   ) {
+  //     jsonwebtoken.verify (
+  //       req.headers.authorization.split (' ')[1],
+  //       'RESTFULAPIs',
+  //       (err, decode) => {
+  //         if (err) {req.user = undefined;}
+  //         req.user = decode;
+  //         next();
+  //       }
+  //     );
+  //   } else {
+  //     req.user = undefined;
+  //     // eslint-disable-next-line callback-return
+  //     next();
+  //   }
+  // },
+  // loginRequired: function (req, res, next) {
+  //   if (req.user) {
+  //     // eslint-disable-next-line callback-return
+  //     next ();
+  //   } else {
+  //     return res.status (401).json ({message: 'Unauthorized user!'});
+  //   }
+  // },
+  login: async function (req, res) {
+    var username = req.param.username;
+    var password = req.param.password;
+    var logedin = await User.find ({
+      where: {username: username, password: password},
+    });
+    if (!logedin) {
+      res
+        .status (401)
+        .json ({
+          message: 'Authentication failed. Username or Password is not correct.',
+        });
+    } else {
+      return res.json ({
+        token: jwt.sign (
+          {username: username, password: password},
+          'RESTFULAPIs'
+        ),
+      });
+    }
+  },
   users: async function (req, res) {
     try {
       var users = await User.find ();
