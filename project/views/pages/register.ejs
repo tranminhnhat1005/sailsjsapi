@@ -1,0 +1,17 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item"><a href="/">Home</a></li>
+  <li class="breadcrumb-item active" aria-current="page">Register</li>
+</ol>
+
+<h1 class="display-4 mb-4">Register</h1>
+<div class="form-group">
+  <form method="POST" action="register">
+    <label for="username">Username</label>
+    <input class="form-control mb-4" autofocus="autofocus" type="text" name="username" minlength="6" maxlength="20" pattern="[a-zA-Z0-9]+" required>
+    <label for="password">Password</label>
+    <input class="form-control mb-4" type="password" name="password" minlength="6" maxlength="20" pattern="[a-zA-Z0-9]+" required>
+    <label for="comfirmation">Comfirm password</label>
+    <input class="form-control mb-4" type="password" name="comfirmation" minlength="6" maxlength="20" pattern="[a-zA-Z0-9]+" required>
+    <input class="btn btn-block btn-info" type="submit" value="Register">
+  </form>
+</div>
