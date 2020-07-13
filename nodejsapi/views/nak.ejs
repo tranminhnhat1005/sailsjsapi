@@ -1,0 +1,25 @@
+<% var tuoi = 19; %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+
+<body>
+    <h1>Welcome to NAK.EJS from <span style="color: crimson; font-weight: bold">views/nak.ejs</span></h1>
+
+    <% if(tuoi >= 18){ %>
+    <h2>Ban da du tuoi r</h2>
+    <% }else{ %>
+    <h2>Ban chua du tuoi</h2>
+    <% } %>
+
+    <% for(var i=1; i <=5; i++){ %>
+    <h3>Nak dep trai <%-i %></h3>
+    <% } %>
+</body>
+
+</html>
