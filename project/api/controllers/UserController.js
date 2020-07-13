@@ -5,47 +5,33 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-const bcrypt = require ('bcrypt-nodejs');
-// const User = require ('../models/User');
+const jwt = require ('../services/jwt');
 
 module.exports = {
-  check: function (req, res) {
-    //console.log(req.user);
-    return res.json (req.user);
+  register: async (req, res) => {
+    let user = req.body;
+    try {
+      await User.create (user);
+    } catch (error) {
+      res.send ({error: error});
+    }
+    return res.json ({user: user});
   },
 
-  register: async function (req, res) {
-    await User.create (req.body).exec ((err, user) => {
-      if (err) {
-        return res.json({
-          err: err,
+  login: async (req, res) => {
+    let user = await User.findOne ({username: req.body.username});
+    if (user) {
+      let password = req.body.password;
+      if (!password || password !== user.password) {
+        return res.send ('Not found this user.');
+      } else {
+        var token = jwt.sign (user);
+        // localStorage.setItem('token', token);
+        return res.json ({
+          user: user,
+          token: token,
         });
       }
-      return res.json (user);
-    });
-  },
-
-  login: async function (res, req) {
-    await User.findOne ({username: req.body.username})
-      .then ((user) => {
-        bcrypt.compare (
-          req.body.password,
-          user.encryptedPassword,
-          // eslint-disable-next-line handle-callback-err
-          (err, result) => {
-            if (result) {
-              return res.json ({
-                user: user,
-                token: jwt.sign (user),
-              });
-            } else {
-              return res.forbidden ({err: 'Something was wrong'});
-            }
-          }
-        );
-      })
-      .catch (() => {
-        return res.forbidden ({err: 'Something was wrong'});
-      });
+    }
   },
 };

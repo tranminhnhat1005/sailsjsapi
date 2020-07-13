@@ -7,7 +7,7 @@ module.exports = {
         data: payload,
       },
       'nakdeptrai',
-      {expiresIn: 30}
+      {expiresIn: '2d'}
     );
   },
   verify: function (token, cb) {

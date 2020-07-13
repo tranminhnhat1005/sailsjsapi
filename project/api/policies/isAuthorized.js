@@ -1,12 +1,12 @@
 const jwt = require ('../services/jwt');
 
-module.exports = async function (req, res, next) {
-  var token;
+module.exports = async (req, res, next) => {
+  let token;
   if (req.headers && req.headers.authorization) {
-    var parts = req.headers.authorization.split (' ');
+    let parts = req.headers.authorization.split (' ');
     if (parts.length === 2) {
-      var scheme = parts[0];
-      var credentials = parts[1];
+      let scheme = parts[0];
+      let credentials = parts[1];
 
       if (/^Bearer$/i.test (scheme)) {
         token = credentials;
